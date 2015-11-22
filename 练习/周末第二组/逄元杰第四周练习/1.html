@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        .div1 {
+                top: 10px;
+                width: 100px;
+                height: 100px;
+                border: 1px solid #4e45cc;
+                background: #1537ff;
+                border-radius: 50%;
+                float:left;
+                margin:0 20px;
+            }
+        .div2 {
+            top: 10px;
+            width: 100px;
+            height: 100px;
+            border: 1px solid #4e45cc;
+            background: #fffb3a;
+            border-radius: 50%;
+            opacity: 0.1;
+            float:left;
+            margin:0 20px;
+        }
+        .div3 {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #4e45cc;
+            background: #7aff42;
+            border-radius: 50%;
+            opacity: 0.1;
+            float:left;
+            margin:0 20px;
+        }
+        .div4 {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #4e45cc;
+            background: #ff525b;
+            border-radius: 50%;
+            opacity: 0.1;
+            float:left;
+            margin:0 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="div1">
+</div>
+<div class="div2">
+</div>
+<div class="div3">
+</div>
+<div class="div4">
+</div>
+<script type="text/javascript">
+    //思路，当前(消耗的时间/总的时间)*总距离=当前走过的时间；
+    //
+    /*  var ele=document.getElementById("div1");
+     var times=0;//当前消耗的时间；
+     var duration=1000;//总消耗时间 ;
+     var target=850;
+     var begin=150;
+     var change=target-begin;
+     var interval=10;
+     var direction=-1;
+     function step(){
+     times+=interval;
+     if(times<duration){
+     ele.style.left=(times/duration)*change+begin+"px";//内部样式不能获取但是可以修改；
+     }else if(times==duration){
+     ele.style.left=target+"px";
+     }else{
+     times*=direction;
+     }
+     }
+     var timer=window.setInterval(step,interval);//*/
+
+    //getCss函数
+
+    function getCss(ele,attr){
+        if(window.getComputedStyle){
+            return parseFloat(getComputedStyle(ele,null)[attr]);
+        }else{
+           // return parseFloat(ele.currentStyle[attr]);
+            if(attr=="opacity"){
+                var val=ele.currentStyle.filter;
+            }
+        }
+    }
+    var ele=document.getElementsByTagName("div");
+    for(var i=0;i<ele.length;i++){
+        ele=document.getElementsByTagName("div").item(i);
+    }
+    //淡入淡出的动画
+    function fadeInOut(ele,target,duration,fnCallBack){//target是指不透明度的终点值
+        duration = duration||600;
+        var begin=getCss(ele,"opacity");
+        var change=target-begin;
+        var times=0;
+        var interval=15;
+        clearInterval(ele.timer);
+        //开始清除积累的clearInterval(timer);
+        function step(){
+            //clearInterval(ele.timer);//写在这儿，一次也执行不了
+            times+=interval;
+            if(times<duration){
+                ele.style.opacity=times/duration*change+begin;
+            }else{
+                ele.style.opacity=target;//处理过界的问题
+                window.clearInterval(ele.timer);
+                //window.clearInterval(timer);
+                typeof fnCallBack=="function" ?fnCallBack.call(ele):null;
+            }
+        }
+        ele.timer=window.setInterval(step,interval);
+        //开始的时候，timer是个局部变量：
+        //var timer=window.setInterval(step,interval);
+
+    }
+    function fadeIn(){
+        fadeInOut(ele,1,2100,fadeOut);
+    }
+    function fadeOut(){
+        fadeInOut(ele,0,2100,fadeIn);
+    }
+    document.documentElement.onclick=fadeIn();
+/*
+    document.documentElement.onclick=function(){
+        if(getCss(ele,"opacity")<0.5){
+            fadeInOut(ele,1,2800);
+        }else{
+            fadeInOut(ele,0,2800);
+        }
+    }
+*/
+</script>
+</body>
+</html>
