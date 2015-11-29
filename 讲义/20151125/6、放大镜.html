@@ -13,11 +13,19 @@
             border: none;
         }
 
-        .box, .boxDec {
+        .box {
             float: left;
             margin: 20px;
             width: 350px;
             height: 350px;
+            border: 1px solid #ccc;
+            overflow: hidden;
+        }
+        .boxDec{
+            float: left;
+            margin: 20px;
+            width: 700px;
+            height: 700px;
             border: 1px solid #ccc;
             overflow: hidden;
         }
@@ -62,7 +70,6 @@
     <img src="img/iphone.jpg"/>
 </div>
 <div class="boxDec" id="boxDec"><img src="img/iphone_big.jpg"/></div>
-
 <script type="text/javascript">
     var box = document.getElementById("box");
     var boxDec = document.getElementById("boxDec");
