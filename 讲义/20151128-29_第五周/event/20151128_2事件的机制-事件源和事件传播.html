@@ -37,7 +37,8 @@
 	//事件会传播
 	//事件的传播是在：事件源和根元素之间的传播，
 	//事件传传播是双方向的（不必过度理解）
-	function fn(e){ alert(this.id||this.tagName);
+	function fn(e){
+		alert(this.id||this.tagName);
 		e.stopPropagation();
 	}
 	var eles=document.getElementsByTagName("*");
