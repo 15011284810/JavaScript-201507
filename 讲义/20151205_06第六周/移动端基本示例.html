@@ -8,22 +8,23 @@
 *{margin:0;padding:0}
 ul{list-style:none}
 #outer{width:80%;overflow:hidden;margin:100px 10%;}
-#inner{height:100px;width:500%;transition:.7s linear}
-#inner li{width:20%;height:100px;float:left;}
+#inner{height:100px;width:500%;transition:.7s linear} /*transition 实现动画效果*/
+#inner li{width:20%;height:100px;float:left;font-size: 80px;color: white;line-height: 100px;text-align: center;font-weight: bold;}
 #inner li:nth-child(1){background-color:red}
 #inner li:nth-child(2){background-color:green}
 #inner li:nth-child(3){background-color:blue}
 #inner li:nth-child(4){background-color:yellow}
+#inner li:nth-child(5){}
+
 </style>
 </head>
-
 <body>
 <div id="outer">
 	<ul id='inner'>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
+    <li>一</li>
+    <li>二</li>
+    <li>三</li>
+    <li>四</li>
     </ul>
 </div>
 </body>
@@ -31,17 +32,18 @@ ul{list-style:none}
 <script>
 var oInner = document.getElementById("inner");
 var oLis = oInner.getElementsByTagName("li");
+
 [].forEach.call(oLis,function(ele,index){
 	ele.index = index;
 	ele.addEventListener("touchstart",start,false);
 	ele.addEventListener("touchmove",move,false);
-	ele.addEventListener("touchend",end,false);
-	
+	ele.addEventListener("touchend",end,false);	
 	})
 	
 function start(e){
 	this.startX = e.changedTouches[0].pageX;//保存手势的原始位置
 }
+
 function move(e){
 	this.flag = true;
 	e.preventDefault();
@@ -61,6 +63,7 @@ function end(){
 			
 	}
 }
+
 function setPos(pos,cur){
 	var index = null;
 	if(pos>0){
@@ -76,8 +79,6 @@ function setPos(pos,cur){
 			
 	}
 	return index;
-	
-	
 }
 </script>
 
