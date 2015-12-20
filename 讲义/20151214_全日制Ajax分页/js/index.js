@@ -15,7 +15,6 @@ list.style.height = pageNum * 30 + "px";
 utils.ajax("data.txt", function (data) {
     total = data.length;
     totalPage = Math.ceil(total / pageNum);
-
     bindData(curPage, data);
     bindPage();
 

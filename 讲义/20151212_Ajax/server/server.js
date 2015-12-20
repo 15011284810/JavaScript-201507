@@ -1,6 +1,7 @@
 var http = require('http');
 var url = require('url');
 var fs = require('fs');
+
 var getFile = function (path, response) {
     fs.readFile(path, function (err, data) {
         if (err) {
