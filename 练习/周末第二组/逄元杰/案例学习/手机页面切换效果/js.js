@@ -3,7 +3,7 @@ var oLis = document.querySelectorAll(".slide>li");
 var winW = document.documentElement.clientWidth;
 var winH = document.documentElement.clientHeight;
 var desW = 640;
-var desH = 960;
+var desH = 1080;
 main.style.webkitTransform = "scale(" + winH / desH + ")";
 
 [].forEach.call(oLis, function () {
@@ -11,10 +11,12 @@ main.style.webkitTransform = "scale(" + winH / desH + ")";
     arguments[0].addEventListener("touchstart", start, false);
     arguments[0].addEventListener('touchmove', move, false);
     arguments[0].addEventListener('touchend', end, false);
-})
+});
+/*时间执行中*/
 function start(e) {
     this.start = e.changedTouches[0].pageY;
 }
+
 function move(e) {
     e.preventDefault();
     this.flag = true;
@@ -36,7 +38,7 @@ function move(e) {
 
     } else if (changePos < 0) {
         this.prevSIndex = cur == oLis.length - 1 ? 0 : cur + 1;
-        var pos = winH + changePos;
+        pos = winH + changePos;
 
     }
     oLis[this.prevSIndex].style.webkitTransform = "translate(0," + pos + "px)";
@@ -44,6 +46,7 @@ function move(e) {
     oLis[this.prevSIndex].style.display = "block";
     oLis[cur].style.webkitTransform = "scale(" + (1 - Math.abs(changePos) / winH * step) + ") translate(0," + changePos + "px)";
 }
+/*时间执行完成*/
 function end(e) {
     if (this.flag) {
         oLis[this.prevSIndex].style.webkitTransform = "translate(0,0)";
@@ -55,6 +58,3 @@ function end(e) {
     }
 
 }
-
-
-
